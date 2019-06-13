@@ -51,27 +51,37 @@ function supports () {
 
 exports.defineAutoTests = function () {
     describe('ES3', function () {
-        it('methods', function () {
+        it('function: [].hasOwnProperty', function () {
             expect(typeof [].hasOwnProperty === 'function').toBe(true);
         });
     });
 
     describe('ES5', function () {
-        it('methods', function () {
-            expect(typeof [].filter === 'function' &&
-                typeof Function.prototype.bind === 'function' &&
-                typeof Object.defineProperty === 'function' &&
-                typeof ''.trim === 'function' &&
-                typeof JSON === 'object').toBe(true);
+        it('function: [].filter', function () {
+            expect(typeof [].filter === 'function').toBe(true);
+        });
+        it('function: Function.prototype.bind', function () {
+            expect(typeof Function.prototype.bind === 'function').toBe(true);
+        });
+        it('function: Object.defineProperty', function () {
+            expect(typeof Object.defineProperty === 'function').toBe(true);
+        });
+        it("function: ''.trim", function () {
+            expect(typeof ''.trim === 'function').toBe(true);
+        });
+        it('object: JSON', function () {
+            expect(typeof JSON === 'object').toBe(true);
         });
 
         supports('reservedWords');
     });
 
     describe('ES6', function () {
-        it('methods', function () {
-            expect(typeof Object.assign === 'function' &&
-                typeof Object.freeze === 'function').toBe(true);
+        it('function: Object.assign', function () {
+            expect(typeof Object.assign === 'function').toBe(true);
+        });
+        it('function: Object.freeze', function () {
+            expect(typeof Object.freeze === 'function').toBe(true);
         });
 
         supports(
