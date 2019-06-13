@@ -1,0 +1,14 @@
+{
+  "name": "cordova-plugin-webview-javascript-compatibility-tests",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "cordova-plugin-webview-javascript-compatibility-tests",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "",
+  "license": "Apache-2.0"
+}
