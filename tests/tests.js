@@ -1,65 +1,86 @@
 /* eslint-env jasmine */
 
+// based on https://codereview.stackexchange.com/questions/147892/small-javascript-library-for-ecmascript-version-detection
+
+var features = {
+    // 'arrayComprehensions': '[for(_ of [0])_]',
+    'arrowFunction': '(_=>_)',
+    'class': '(class{})',
+    'const': 'const c=true',
+    'defaultParams': '(function(a=false){})',
+    'destructuring': 'let {d}={a:true}',
+    'forOf': 'for(var b of [])',
+    'generator': '(function*(){})',
+    'getter': '({get a(){}})',
+    'label': 'l:0',
+    'let': 'let o',
+    'reservedWords': '({catch:true})',
+    'setter': '({set a(v){}})',
+    'spread': '[...[]]',
+    // eslint-disable-next-line no-template-curly-in-string,no-useless-escape
+    'stringInterpolation': '`$\{0}`',
+    'stringLineBreak': "'\\\n'",
+    'super': '({b(){super.a}})',
+    'yield': '(function*(){yield true})'
+};
+
+function evaluate (code) {
+    console.log('evaluate', code);
+    try {
+        // eslint-disable-next-line no-eval
+        console.log(eval(code));
+        // eslint-disable-next-line no-eval
+        eval(code);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+function supports () {
+    var i = 0; var len = arguments.length;
+    for (; i < len; ++i) {
+        var feature = arguments[i].toString();
+        if (features.hasOwnProperty(feature)) {
+            it('syntax: ' + features[feature], function () {
+                expect(evaluate(features[feature] + ';')).toBe(true);
+            });
+        }
+    }
+}
+
 exports.defineAutoTests = function () {
-    describe('Device Information (window.device)', function () {
-        it('should exist', function () {
-            expect(window.device).toBeDefined();
+    describe('ES3', function () {
+        it('methods', function () {
+            expect(typeof [].hasOwnProperty === 'function').toBe(true);
+        });
+    });
+
+    describe('ES5', function () {
+        it('methods', function () {
+            expect(typeof [].filter === 'function' &&
+                typeof Function.prototype.bind === 'function' &&
+                typeof Object.defineProperty === 'function' &&
+                typeof ''.trim === 'function' &&
+                typeof JSON === 'object').toBe(true);
         });
 
-        it('should contain a platform specification that is a string', function () {
-            expect(window.device.platform).toBeDefined();
-            expect((String(window.device.platform)).length > 0).toBe(true);
+        supports('reservedWords');
+    });
+
+    describe('ES6', function () {
+        it('methods', function () {
+            expect(typeof Object.assign === 'function' &&
+                typeof Object.freeze === 'function').toBe(true);
         });
 
-        it('should contain a version specification that is a string', function () {
-            expect(window.device.version).toBeDefined();
-            expect((String(window.device.version)).length > 0).toBe(true);
-        });
+        supports(
+            'arrowFunction', 'class', 'const', 'forOf', 'defaultParams', 'destructuring', 'super', 'yield'
+        );
+    });
 
-        it('should contain a UUID specification that is a string or a number', function () {
-            expect(window.device.uuid).toBeDefined();
-            if (typeof window.device.uuid === 'string' || typeof window.device.uuid === 'object') {
-                expect((String(window.device.uuid)).length > 0).toBe(true);
-            } else {
-                expect(window.device.uuid > 0).toBe(true);
-            }
-        });
-
-        it('should contain a cordova specification that is a string', function () {
-            expect(window.device.cordova).toBeDefined();
-            expect((String(window.device.cordova)).length > 0).toBe(true);
-        });
-
-        it('should depend on the presence of cordova.version string', function () {
-            expect(window.cordova.version).toBeDefined();
-            expect((String(window.cordova.version)).length > 0).toBe(true);
-        });
-
-        it('should contain device.cordova equal to cordova.version', function () {
-            expect(window.device.cordova).toBe(window.cordova.version);
-        });
-
-        it('should contain a model specification that is a string', function () {
-            expect(window.device.model).toBeDefined();
-            expect((String(window.device.model)).length > 0).toBe(true);
-        });
-
-        it('should contain a manufacturer property that is a string', function () {
-            expect(window.device.manufacturer).toBeDefined();
-            expect((String(window.device.manufacturer)).length > 0).toBe(true);
-        });
-
-        it('should contain an isVirtual property that is a boolean', function () {
-            expect(window.device.isVirtual).toBeDefined();
-            expect(typeof window.device.isVirtual).toBe('boolean');
-        });
-
-        it('should contain a serial number specification that is a string', function () {
-            expect(window.device.serial).toBeDefined();
-            expect((String(window.device.serial)).length > 0).toBe(true);
-
-        });
-
+    describe('ES7', function () {
+        // supports('arrayComprehensions');
     });
 };
 
