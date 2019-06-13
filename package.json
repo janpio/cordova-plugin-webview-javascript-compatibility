@@ -1,0 +1,41 @@
+{
+  "name": "cordova-plugin-webview-javascript-compatibility",
+  "version": "0.0.1",
+  "description": "A small Cordova plugin to check the webview JavaScript compatibility",
+  "cordova": {
+    "id": "cordova-plugin-webview-javascript-compatibility",
+    "platforms": [
+      "android",
+      "ios",
+      "windows",
+      "browser"
+    ]
+  },
+  "scripts": {
+    "test": "npm run eslint",
+    "eslint": "node node_modules/eslint/bin/eslint www && node node_modules/eslint/bin/eslint tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janpio/cordova-plugin-webview-javascript-compatibility.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova",
+    "webview",
+    "javascript",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "author": "Jan Piotrowski",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/janpio/cordova-plugin-webview-javascript-compatibility/issues"
+  },
+  "homepage": "https://github.com/janpio/cordova-plugin-webview-javascript-compatibility#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}
