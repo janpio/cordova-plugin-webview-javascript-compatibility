@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-webview-javascript-compatibility"
+    version="0.0.1">
+    <name>cordova-plugin-webview-javascript-compatibility</name>
+    <description>A small Cordova plugin to check the webview JavaScript compatibility</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova</keywords>
+    <repo>https://github.com/janpio/cordova-plugin-webview-javascript-compatibility.git</repo>
+    <issue>https://github.com/janpio/cordova-plugin-webview-javascript-compatibility/issues</issue>
+
+    <js-module src="www/plugin.js" name="webview-javascript-compatibility">
+        <clobbers target="cordova.plugin.webview-javascript-compatibility" />
+    </js-module>
+
+</plugin>
