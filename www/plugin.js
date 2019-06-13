@@ -1,8 +1,8 @@
 var plugin = {
-    foo:function() {
+    foo: function () {
         return 'foo';
     },
-    bar:function() {
+    bar: function () {
         return 'bar';
     }
 };
