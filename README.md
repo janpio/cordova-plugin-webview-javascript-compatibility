@@ -4,7 +4,9 @@ A Cordova plugin that can tell you, what JavaScript features the used webview su
 
 ## How it works
 
-The [automated tests](tests/tests.js) contain a list of JavaScript features that are only available in some versions of JavaScript. During the test runs it tries to `eval` these code snippets and fails tests for code that can not successfully be executed.
+The [automated tests](tests/tests.js) contain a list of JavaScript features that are only available in some versions of JavaScript. During the test runs it tries to `eval` these code snippets and fails tests for code that can not successfully be executed:
+
+![all features are supported](https://user-images.githubusercontent.com/183673/59503565-00742000-8ea1-11e9-9588-2c08a4dcde11.png)
 
 ## Usage
 
